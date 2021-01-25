@@ -1,7 +1,7 @@
 START TRANSACTION ;
 
 -- Begin a phone bank.
-CREATE OR REPLACE FUNCTION phone_bank_init(__name VARCHAR, __phone_numbers VARCHAR[]) RETURNS void
+CREATE OR REPLACE FUNCTION phone_bank_init(__name VARCHAR, __phone_numbers VARCHAR[]) RETURNS INTEGER
 LANGUAGE plpgsql AS
 $_$
 DECLARE
@@ -11,6 +11,7 @@ BEGIN
     INSERT INTO phone_bank_number (phone_bank_id, phone_number, status, result)
         SELECT __phone_bank_id, pn, 'P', NULL
         FROM UNNEST(__phone_numbers) AS pn;
+    RETURN __phone_bank_id;
 END;
 $_$ SECURITY DEFINER;
 

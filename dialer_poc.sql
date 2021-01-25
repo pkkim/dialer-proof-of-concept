@@ -28,4 +28,4 @@ CREATE UNIQUE INDEX phone_bank_number_phone_bank_id_phone_number
 -- - A[ssigned]: assigned until X time
 -- - C[alled]: already called (should have a result)
 
--- results: for now, just 'G' and 'B'.
+-- results: anything, not checked right now
